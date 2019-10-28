@@ -28,10 +28,13 @@
               </router-link>
             </td>
             <td>
-              <button class="btn btn-sm btn-outline-success">
+              <router-link
+                :to="{name: 'editPost', params:{id:post.id}}"
+                class="btn btn-sm btn-outline-success"
+              >
                 <i class="fa fa-pencil-square-o"></i>
                 Edit
-              </button>
+              </router-link>
             </td>
             <td>
               <button class="btn btn-sm btn-outline-danger">
