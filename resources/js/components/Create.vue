@@ -49,6 +49,7 @@ export default {
         .post("/posts", this.posts)
         .then(response => {
           this.$router.push({ path: "/" });
+          console.log(response);
           this.posts = response.data;
         })
         .catch(e => {

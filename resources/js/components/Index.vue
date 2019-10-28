@@ -37,7 +37,10 @@
               </router-link>
             </td>
             <td>
-              <button class="btn btn-sm btn-outline-danger">
+              <button
+                class="btn btn-sm btn-outline-danger"
+                v-on:click="submitPostDelete(post.id, index)"
+              >
                 <i class="fa fa-trash-o"></i>
                 Delete
               </button>
@@ -67,6 +70,21 @@ export default {
       .catch(e => {
         this.errors.push(e);
       });
+  },
+  methods: {
+    submitPostDelete(id, index) {
+      if (confirm("Click 'ok' to Delete.")) {
+        axios
+          .delete("/posts/" + id)
+          .then(response => {
+            console.log(response);
+            this.posts.splice(index, 1);
+          })
+          .catch(e => {
+            this.errors.push(e);
+          });
+      }
+    }
   }
 };
 </script>

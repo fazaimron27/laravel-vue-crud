@@ -1891,6 +1891,7 @@ __webpack_require__.r(__webpack_exports__);
           path: "/"
         });
 
+        console.log(response);
         _this.posts = response.data;
       })["catch"](function (e) {
         _this.errors.push(e);
@@ -1994,6 +1995,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2009,6 +2013,21 @@ __webpack_require__.r(__webpack_exports__);
     })["catch"](function (e) {
       _this.errors.push(e);
     });
+  },
+  methods: {
+    submitPostDelete: function submitPostDelete(id, index) {
+      var _this2 = this;
+
+      if (confirm("Click 'ok' to Delete.")) {
+        axios["delete"]("/posts/" + id).then(function (response) {
+          console.log(response);
+
+          _this2.posts.splice(index, 1);
+        })["catch"](function (e) {
+          _this2.errors.push(e);
+        });
+      }
+    }
   }
 });
 
@@ -2131,6 +2150,7 @@ __webpack_require__.r(__webpack_exports__);
           path: "/"
         });
 
+        console.log(response);
         _this2.posts = response.data;
       })["catch"](function (e) {
         _this2.errors.push(e);
@@ -37687,7 +37707,23 @@ var render = function() {
                 1
               ),
               _vm._v(" "),
-              _vm._m(1, true)
+              _c("td", [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-sm btn-outline-danger",
+                    on: {
+                      click: function($event) {
+                        return _vm.submitPostDelete(post.id, index)
+                      }
+                    }
+                  },
+                  [
+                    _c("i", { staticClass: "fa fa-trash-o" }),
+                    _vm._v("\n              Delete\n            ")
+                  ]
+                )
+              ])
             ])
           }),
           0
@@ -37712,17 +37748,6 @@ var staticRenderFns = [
         _c("th", { attrs: { width: "100" } }),
         _vm._v(" "),
         _c("th", { attrs: { width: "100" } })
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("td", [
-      _c("button", { staticClass: "btn btn-sm btn-outline-danger" }, [
-        _c("i", { staticClass: "fa fa-trash-o" }),
-        _vm._v("\n              Delete\n            ")
       ])
     ])
   }
