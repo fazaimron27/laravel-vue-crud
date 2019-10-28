@@ -15,9 +15,9 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Lorem ipsum</td>
-            <td>Lorem ipsum dolor sit amet consectetur adipisicing elit.</td>
+          <tr v-for="(post, index) of posts" v-bind:key="index">
+            <td>{{post.title}}</td>
+            <td>{{post.description}}</td>
             <td>
               <button class="btn btn-sm btn-outline-primary">View</button>
             </td>
@@ -33,3 +33,25 @@
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      posts: [],
+      errors: []
+    };
+  },
+
+  created() {
+    axios
+      .get("/posts")
+      .then(response => {
+        this.posts = response.data;
+      })
+      .catch(e => {
+        this.errors.push(e);
+      });
+  }
+};
+</script>
