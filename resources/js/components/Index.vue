@@ -19,13 +19,25 @@
             <td>{{post.title}}</td>
             <td>{{post.description}}</td>
             <td>
-              <button class="btn btn-sm btn-outline-primary">View</button>
+              <router-link
+                :to="{name: 'readPost', params:{id:post.id}}"
+                class="btn btn-sm btn-outline-primary"
+              >
+                <i class="fa fa-eye"></i>
+                Show
+              </router-link>
             </td>
             <td>
-              <button class="btn btn-sm btn-outline-success">Edit</button>
+              <button class="btn btn-sm btn-outline-success">
+                <i class="fa fa-pencil-square-o"></i>
+                Edit
+              </button>
             </td>
             <td>
-              <button class="btn btn-sm btn-outline-danger">Delete</button>
+              <button class="btn btn-sm btn-outline-danger">
+                <i class="fa fa-trash-o"></i>
+                Delete
+              </button>
             </td>
           </tr>
         </tbody>

@@ -28,6 +28,7 @@ Vue.use(VueRouter)
 
 import Index from './components/Index.vue';
 import Create from './components/Create.vue';
+import Read from './components/Read.vue';
 
 const routes = [{
         path: '/',
@@ -36,6 +37,11 @@ const routes = [{
     {
         path: '/create',
         component: Create
+    },
+    {
+        path: '/read/:id',
+        component: Read,
+        name: 'readPost'
     }
 ]
 
